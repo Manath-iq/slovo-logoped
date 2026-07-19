@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Логопедический центр «Слово» — Нижнекамск</title>
+<meta name="description" content="Логопедический центр «Слово» в Нижнекамске. Постановка звуков, запуск и развитие речи у детей — в игровой форме.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:    #FFF7EC;
+    --cream-2:  #FBE8D3;
+    --peach:    #F9D4B5;
+    --ink:      #4A3220;
+    --brown:    #905F2E;
+    --brown-2:  #98624D;
+    --red:      #FB483D;
+    --orange:   #FF8D28;
+    --yellow:   #FFD71D;
+    --teal:     #26B6C2;
+    --green:    #6BB35B;
+    --radius-l: 28px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Nunito", sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: min(1200px, 100% - 48px);
+    margin-inline: auto;
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(144, 95, 46, .12);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo__lion { width: 48px; height: 48px; }
+
+  .logo__text { display: flex; flex-direction: column; gap: 3px; }
+
+  .logo__word { display: flex; gap: 2px; }
+
+  .logo__tile {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 1;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+  }
+  .logo__tile:nth-child(1) { background: var(--red);    transform: rotate(-6deg); }
+  .logo__tile:nth-child(2) { background: var(--orange); transform: rotate(4deg); }
+  .logo__tile:nth-child(3) { background: var(--yellow); transform: rotate(-3deg); }
+  .logo__tile:nth-child(4) { background: var(--teal);   transform: rotate(5deg); }
+  .logo__tile:nth-child(5) { background: var(--green);  transform: rotate(-4deg); }
+
+  .logo__sub {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--brown);
+  }
+
+  .nav {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav a {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background .2s, color .2s;
+  }
+
+  .nav a:hover { background: var(--cream-2); color: var(--brown); }
+
+  .header__actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: transform .15s, box-shadow .15s, background .2s;
+  }
+
+  .btn--primary {
+    background: var(--orange);
+    color: #fff;
+    padding: 14px 28px;
+    box-shadow: 0 6px 0 rgba(144, 95, 46, .35);
+  }
+  .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 0 rgba(144, 95, 46, .35); }
+  .btn--primary:active { transform: translateY(2px); box-shadow: 0 3px 0 rgba(144, 95, 46, .35); }
+
+  .btn--header {
+    padding: 10px 22px;
+    font-size: 15px;
+    box-shadow: 0 4px 0 rgba(144, 95, 46, .3);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--brown);
+    padding: 14px 28px;
+    border: 2px solid var(--brown);
+  }
+  .btn--ghost:hover { background: var(--brown); color: #fff; transform: translateY(-2px); }
+
+  .burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .burger span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--brown);
+    margin: 5px 0;
+    transition: transform .25s, opacity .25s;
+  }
+  .burger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .burger.is-open span:nth-child(2) { opacity: 0; }
+  .burger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    padding: clamp(28px, 4.5vh, 56px) 0 0;
+    overflow: hidden;
+  }
+
+  /* мягкие цветные пятна на фоне */
+  .hero::before,
+  .hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+  .hero::before {
+    width: 480px; height: 480px;
+    background: rgba(255, 215, 29, .25);
+    top: -140px; right: -100px;
+  }
+  .hero::after {
+    width: 420px; height: 420px;
+    background: rgba(38, 182, 194, .14);
+    bottom: 60px; left: -160px;
+  }
+
+  .hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 32px;
+    padding-bottom: clamp(28px, 5vh, 56px);
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1.5px solid var(--cream-2);
+    box-shadow: 0 3px 12px rgba(74, 50, 32, .08);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--brown);
+    margin-bottom: 20px;
+    transform: rotate(-1deg);
+  }
+
+  .hero__badge .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+
+  .hero h1 {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 4.2vw, 54px);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+  }
+
+  /* слово из кубиков — как в логотипе */
+  .blocks {
+    display: inline-flex;
+    gap: .09em;
+    vertical-align: baseline;
+    transform: translateY(.04em);
+  }
+
+  .blocks span {
+    display: grid;
+    place-items: center;
+    width: 1.22em;
+    height: 1.22em;
+    border-radius: .28em;
+    color: #fff;
+    font-size: .92em;
+    box-shadow: 0 .09em 0 rgba(74, 50, 32, .25);
+    animation: block-in .5s cubic-bezier(.34,1.56,.64,1) backwards;
+  }
+
+  .blocks span:nth-child(5n+1) { background: var(--red);    transform: rotate(-5deg); }
+  .blocks span:nth-child(5n+2) { background: var(--orange); transform: rotate(4deg); }
+  .blocks span:nth-child(5n+3) { background: var(--yellow); transform: rotate(-3deg); }
+  .blocks span:nth-child(5n+4) { background: var(--teal);   transform: rotate(5deg); }
+  .blocks span:nth-child(5n+5) { background: var(--green);  transform: rotate(-4deg); }
+
+  .blocks span:nth-child(1) { animation-delay: .10s; }
+  .blocks span:nth-child(2) { animation-delay: .18s; }
+  .blocks span:nth-child(3) { animation-delay: .26s; }
+  .blocks span:nth-child(4) { animation-delay: .34s; }
+  .blocks span:nth-child(5) { animation-delay: .42s; }
+  .blocks span:nth-child(6) { animation-delay: .50s; }
+  .blocks span:nth-child(7) { animation-delay: .58s; }
+  .blocks span:nth-child(8) { animation-delay: .66s; }
+
+  @keyframes block-in {
+    from { opacity: 0; transform: translateY(-.6em) rotate(0deg) scale(.6); }
+  }
+
+  .hero__lead {
+    font-size: clamp(16px, 1.4vw, 19px);
+    font-weight: 600;
+    line-height: 1.65;
+    color: var(--brown-2);
+    max-width: 520px;
+    margin-bottom: 26px;
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 540px;
+  }
+
+  .chip {
+    font-weight: 800;
+    font-size: 14px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(74, 50, 32, .08);
+    border: 1.5px solid transparent;
+  }
+  .chip:nth-child(1) { color: var(--red);    border-color: color-mix(in srgb, var(--red) 35%, transparent);    transform: rotate(-2deg); }
+  .chip:nth-child(2) { color: var(--teal);   border-color: color-mix(in srgb, var(--teal) 40%, transparent);   transform: rotate(1.5deg); }
+  .chip:nth-child(3) { color: var(--green);  border-color: color-mix(in srgb, var(--green) 40%, transparent);  transform: rotate(-1deg); }
+  .chip:nth-child(4) { color: var(--orange); border-color: color-mix(in srgb, var(--orange) 40%, transparent); transform: rotate(2deg); }
+
+  /* ============ ЛЕВ ============ */
+  .hero__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 420px;
+  }
+
+  .lion {
+    width: min(480px, 100%);
+    height: auto;
+    filter: drop-shadow(0 24px 40px rgba(144, 95, 46, .25));
+  }
+
+  .lion__mane {
+    transform-origin: 0 0;
+    animation: mane-spin 120s linear infinite;
+  }
+
+  @keyframes mane-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .lion__face-group {
+    animation: lion-breathe 5s ease-in-out infinite;
+    transform-origin: 0 0;
+  }
+
+  @keyframes lion-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.025); }
+  }
+
+  /* стикеры вокруг льва */
+  .sticker {
+    position: absolute;
+    z-index: 2;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -12px; }
+  }
+
+  .sticker--bubble {
+    top: 4%;
+    right: 8%;
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    border-radius: 22px 22px 22px 4px;
+    padding: 12px 20px;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 800;
+    font-size: clamp(16px, 1.6vw, 22px);
+    color: var(--red);
+    transform: rotate(6deg);
+    box-shadow: 0 6px 0 rgba(74, 50, 32, .18);
+    animation-delay: .4s;
+  }
+
+  .sticker--letter {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 800;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    box-shadow: 0 6px 0 rgba(74, 50, 32, .2);
+  }
+
+  .sticker--l1 {
+    width: 58px; height: 58px; font-size: 26px;
+    background: var(--teal);
+    bottom: 18%; left: 2%;
+    transform: rotate(-10deg);
+    animation-delay: 1.1s;
+  }
+
+  .sticker--l2 {
+    width: 48px; height: 48px; font-size: 21px;
+    background: var(--green);
+    top: 14%; left: 8%;
+    transform: rotate(12deg);
+    animation-delay: 1.8s;
+  }
+
+  .sticker--l3 {
+    width: 42px; height: 42px; font-size: 18px;
+    background: var(--yellow);
+    bottom: 6%; right: 14%;
+    transform: rotate(-7deg);
+    animation-delay: .8s;
+  }
+
+  .doodle { position: absolute; z-index: 0; }
+  .doodle--star1 { top: 42%; right: 0; }
+  .doodle--star2 { bottom: 30%; left: 12%; }
+
+  /* ============ БЕГУЩАЯ СТРОКА ============ */
+  .ticker {
+    position: relative;
+    z-index: 2;
+    background: var(--brown);
+    transform: rotate(-1.2deg) scale(1.02);
+    padding: 14px 0;
+    overflow: hidden;
+    margin-top: -8px;
+  }
+
+  .ticker__track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: ticker-scroll 28s linear infinite;
+  }
+
+  .ticker__item {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--cream);
+    white-space: nowrap;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .ticker__item::after {
+    content: "✦";
+    color: var(--yellow);
+    font-size: 13px;
+  }
+
+  @keyframes ticker-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lion__mane, .lion__face-group, .sticker, .ticker__track, .blocks span, .hero__badge .dot { animation: none; }
+  }
+
+  /* ============ АДАПТИВ ============ */
+  @media (max-width: 1020px) {
+    .nav { display: none; }
+    .nav.is-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(144, 95, 46, .15);
+      padding: 12px 24px 20px;
+      gap: 2px;
+    }
+    .burger { display: block; }
+    .header__actions .btn { display: none; }
+    .header__inner { position: relative; }
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      text-align: center;
+    }
+    .hero__lead { margin-inline: auto; }
+    .hero__cta, .hero__chips { justify-content: center; }
+    .hero__chips { margin-inline: auto; }
+    .hero__visual { min-height: 0; }
+    .lion { width: min(380px, 86%); }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 27px; }
+    .hero__badge { font-size: 12px; padding: 7px 14px; white-space: nowrap; }
+    .btn--primary, .btn--ghost { width: 100%; }
+    .sticker--bubble { right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="logo" href="#" aria-label="Логопедический центр Слово — на главную">
+      <svg class="logo__lion" viewBox="-260 -260 520 520" aria-hidden="true">
+        <use href="#lion-svg"></use>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__word" aria-hidden="true">
+          <span class="logo__tile">С</span><span class="logo__tile">Л</span><span class="logo__tile">О</span><span class="logo__tile">В</span><span class="logo__tile">О</span>
+        </span>
+        <span class="logo__sub">логопедический центр</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Основная навигация">
+      <a href="#about">О центре</a>
+      <a href="#services">Услуги</a>
+      <a href="#specialists">Специалисты</a>
+      <a href="#prices">Цены</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary btn--header" href="#contacts">Записаться</a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero__grid">
+
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="dot" aria-hidden="true"></span>
+          Логопедический центр в Нижнекамске
+        </div>
+
+        <h1>
+          Учим детей
+          <span class="blocks" aria-label="говорить"><span>г</span><span>о</span><span>в</span><span>о</span><span>р</span><span>и</span><span>т</span><span>ь</span></span>
+          чисто и&nbsp;уверенно
+        </h1>
+
+        <p class="hero__lead">
+          Постановка звуков, запуск и&nbsp;развитие речи&nbsp;— в&nbsp;игровой форме,
+          бережно и&nbsp;с&nbsp;вниманием к&nbsp;каждому ребёнку.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contacts">Записаться на занятие</a>
+          <a class="btn btn--ghost" href="#services">Наши услуги</a>
+        </div>
+
+        <div class="hero__chips">
+          <span class="chip">Постановка звуков</span>
+          <span class="chip">Запуск речи</span>
+          <span class="chip">Развитие речи</span>
+          <span class="chip">Подготовка к школе</span>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="sticker sticker--bubble">Р-Р-Р!</div>
+        <div class="sticker sticker--letter sticker--l1">Ш</div>
+        <div class="sticker sticker--letter sticker--l2">С</div>
+        <div class="sticker sticker--letter sticker--l3">Л</div>
+
+        <svg class="doodle doodle--star1" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <path d="M17 2 L20 14 L32 17 L20 20 L17 32 L14 20 L2 17 L14 14 Z" fill="#FFD71D"/>
+        </svg>
+        <svg class="doodle doodle--star2" width="22" height="22" viewBox="0 0 34 34" aria-hidden="true">
+          <path d="M17 2 L20 14 L32 17 L20 20 L17 32 L14 20 L2 17 L14 14 Z" fill="#26B6C2" opacity=".7"/>
+        </svg>
+
+        <svg class="lion" viewBox="-260 -260 520 520" role="img" aria-label="Львёнок — талисман центра «Слово»">
+          <defs>
+            <g id="lion-svg">
+              <g class="lion__mane" id="mane"></g>
+              <g class="lion__face-group">
+                <!-- уши -->
+                <circle cx="-92" cy="-108" r="36" fill="#F7DCC0" stroke="#FFF7EC" stroke-width="8"/>
+                <circle cx="92" cy="-108" r="36" fill="#F7DCC0" stroke="#FFF7EC" stroke-width="8"/>
+                <circle cx="-92" cy="-108" r="16" fill="#8A5A3B"/>
+                <circle cx="92" cy="-108" r="16" fill="#8A5A3B"/>
+                <!-- мордочка -->
+                <rect x="-118" y="-128" width="236" height="252" rx="96" fill="#F7DCC0" stroke="#FFF7EC" stroke-width="9"/>
+                <!-- глаза (закрытые, довольные) -->
+                <path d="M -74 -22 Q -56 -42 -38 -22" fill="none" stroke="#6E4A2E" stroke-width="8" stroke-linecap="round"/>
+                <path d="M 38 -22 Q 56 -42 74 -22" fill="none" stroke="#6E4A2E" stroke-width="8" stroke-linecap="round"/>
+                <!-- нос-сердечко -->
+                <path d="M 0 16 C -4 6 -22 2 -22 20 C -22 32 -8 40 0 48 C 8 40 22 32 22 20 C 22 2 4 6 0 16 Z" fill="#8A5A3B"/>
+                <!-- рот -->
+                <path d="M 0 48 L 0 66" stroke="#6E4A2E" stroke-width="7" stroke-linecap="round"/>
+                <path d="M -26 70 Q 0 92 26 70" fill="none" stroke="#6E4A2E" stroke-width="7" stroke-linecap="round"/>
+                <!-- усы -->
+                <g stroke="#6E4A2E" stroke-width="5" stroke-linecap="round" fill="none">
+                  <path d="M -60 34 Q -96 26 -124 12"/>
+                  <path d="M -58 48 Q -98 46 -128 40"/>
+                  <path d="M -58 62 Q -96 66 -122 74"/>
+                  <path d="M 60 34 Q 96 26 124 12"/>
+                  <path d="M 58 48 Q 98 46 128 40"/>
+                  <path d="M 58 62 Q 96 66 122 74"/>
+                </g>
+              </g>
+            </g>
+          </defs>
+          <use href="#lion-svg"></use>
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" id="ticker-track"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Грива льва: 36 лучей по кругу, как в логотипе
+  (function () {
+    var mane = document.getElementById('mane');
+    var SVG = 'http://www.w3.org/2000/svg';
+    var N = 36;
+    for (var i = 0; i < N; i++) {
+      var angle = i * (360 / N);
+      var len = 62 + (i % 3) * 14;   // лучи трёх разных длин
+      var rect = document.createElementNS(SVG, 'rect');
+      rect.setAttribute('x', -10);
+      rect.setAttribute('y', -(158 + len));
+      rect.setAttribute('width', 20);
+      rect.setAttribute('height', len);
+      rect.setAttribute('rx', 5);
+      rect.setAttribute('fill', '#905F2E');
+      rect.setAttribute('stroke', '#FFF7EC');
+      rect.setAttribute('stroke-width', 3);
+      rect.setAttribute('transform', 'rotate(' + angle + ')');
+      mane.appendChild(rect);
+    }
+  })();
+
+  // Бегущая строка: дублируем набор слов дважды для бесшовного цикла
+  (function () {
+    var words = ['постановка звуков', 'запуск речи', 'развитие речи', 'логомассаж', 'подготовка к школе', 'дизартрия', 'занятия в игровой форме'];
+    var track = document.getElementById('ticker-track');
+    for (var pass = 0; pass < 2; pass++) {
+      words.forEach(function (w) {
+        var el = document.createElement('span');
+        el.className = 'ticker__item';
+        el.textContent = w;
+        track.appendChild(el);
+      });
+    }
+  })();
+
+  // Мобильное меню
+  (function () {
+    var burger = document.getElementById('burger');
+    var nav = document.getElementById('nav');
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# Внутренние материалы — не публикуем
+assets/design-templates/
+description.md
