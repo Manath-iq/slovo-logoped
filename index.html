@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=4">
-<script src="script.js?v=4" defer></script>
+<link rel="stylesheet" href="styles.css?v=6">
+<script src="script.js?v=6" defer></script>
 </head>
 <body>
 
@@ -248,29 +248,45 @@
   </section>
 
   <!-- ============ КАК ПРОХОДЯТ ЗАНЯТИЯ ============ -->
-  <section class="section" id="format">
-    <div class="container">
-      <span class="section__label" style="background: color-mix(in srgb, var(--green) 16%, white); color: var(--green);">Формат</span>
-      <h2 class="section__title">Как проходят занятия</h2>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step__num">1</div>
-          <h3>Знакомство и диагностика</h3>
-          <p>Специалист общается с&nbsp;ребёнком и&nbsp;родителями, оценивает речь
-          и&nbsp;развитие, отвечает на&nbsp;вопросы.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <h3>Индивидуальная программа</h3>
-          <p>Подбираем специалиста и&nbsp;план занятий: логопед, дефектолог,
-          нейропсихолог — или&nbsp;комплексная работа.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <h3>Занятия по 30 минут</h3>
-          <p>Регулярные встречи в&nbsp;игровой форме. Рассказываем родителям
-          о&nbsp;прогрессе и&nbsp;даём задания для&nbsp;дома.</p>
+  <section class="format" id="format">
+    <div class="format__scrub" id="format-scrub">
+      <div class="format__sticky">
+        <div class="container format__inner">
+          <div class="format__head">
+            <span class="section__label" style="background: color-mix(in srgb, var(--green) 16%, white); color: var(--green);">Формат</span>
+            <h2 class="section__title">Как проходят занятия</h2>
+          </div>
+          <div class="format__stage">
+            <div class="format__steps">
+              <div class="fstep is-active">
+                <div class="fstep__num">1</div>
+                <div class="fstep__text">
+                  <h3>Знакомство и диагностика</h3>
+                  <p>Специалист общается с&nbsp;ребёнком и&nbsp;родителями, оценивает речь
+                  и&nbsp;развитие, отвечает на&nbsp;вопросы.</p>
+                </div>
+              </div>
+              <div class="fstep">
+                <div class="fstep__num">2</div>
+                <div class="fstep__text">
+                  <h3>Индивидуальная программа</h3>
+                  <p>Подбираем специалиста и&nbsp;план занятий: логопед, дефектолог,
+                  нейропсихолог — или&nbsp;комплексная работа.</p>
+                </div>
+              </div>
+              <div class="fstep">
+                <div class="fstep__num">3</div>
+                <div class="fstep__text">
+                  <h3>Занятия по 30 минут</h3>
+                  <p>Регулярные встречи в&nbsp;игровой форме. Рассказываем родителям
+                  о&nbsp;прогрессе и&nbsp;даём задания для&nbsp;дома.</p>
+                </div>
+              </div>
+            </div>
+            <div class="format__media">
+              <video class="format__video" id="format-video" src="assets/format-scrub.mp4" muted playsinline preload="auto" aria-label="Видео: как проходит занятие в центре «Слово»"></video>
+            </div>
+          </div>
         </div>
       </div>
     </div>
