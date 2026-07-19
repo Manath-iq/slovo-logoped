@@ -571,9 +571,11 @@
   .service {
     background: #fff;
     border-radius: 26px;
-    padding: 28px 26px;
+    overflow: hidden;
     box-shadow: 0 6px 18px rgba(74, 50, 32, .06);
     border: 1.5px solid rgba(144, 95, 46, .1);
+    display: flex;
+    flex-direction: column;
     transition: transform .2s, box-shadow .2s;
   }
 
@@ -582,23 +584,52 @@
     box-shadow: 0 14px 30px rgba(74, 50, 32, .12);
   }
 
-  .service__icon {
-    width: 56px;
-    height: 56px;
+  /* зона под иллюстрацию: сейчас цветная подложка с эмодзи,
+     сюда встанет <img class="service__img"> когда появятся картинки */
+  .service__media {
+    position: relative;
+    aspect-ratio: 3 / 2;
     display: grid;
     place-items: center;
-    font-size: 28px;
-    border-radius: 18px;
-    margin-bottom: 18px;
-    transform: rotate(-4deg);
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .service:nth-child(6n+1) .service__icon { background: color-mix(in srgb, var(--red) 16%, white); }
-  .service:nth-child(6n+2) .service__icon { background: color-mix(in srgb, var(--orange) 20%, white); }
-  .service:nth-child(6n+3) .service__icon { background: color-mix(in srgb, var(--yellow) 26%, white); }
-  .service:nth-child(6n+4) .service__icon { background: color-mix(in srgb, var(--teal) 18%, white); }
-  .service:nth-child(6n+5) .service__icon { background: color-mix(in srgb, var(--green) 18%, white); }
-  .service:nth-child(6n+6) .service__icon { background: color-mix(in srgb, var(--brown) 14%, white); }
+  .service__media::before {
+    content: "";
+    position: absolute;
+    width: 44%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .55);
+  }
+
+  .service__emoji {
+    position: relative;
+    font-size: clamp(46px, 4vw, 56px);
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 6px 10px rgba(74, 50, 32, .18));
+  }
+
+  .service:nth-child(even) .service__emoji { transform: rotate(6deg); }
+
+  .service__media img,
+  .service__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .service:nth-child(6n+1) .service__media { background: color-mix(in srgb, var(--red) 16%, white); }
+  .service:nth-child(6n+2) .service__media { background: color-mix(in srgb, var(--orange) 20%, white); }
+  .service:nth-child(6n+3) .service__media { background: color-mix(in srgb, var(--yellow) 26%, white); }
+  .service:nth-child(6n+4) .service__media { background: color-mix(in srgb, var(--teal) 18%, white); }
+  .service:nth-child(6n+5) .service__media { background: color-mix(in srgb, var(--green) 18%, white); }
+  .service:nth-child(6n+6) .service__media { background: color-mix(in srgb, var(--brown) 14%, white); }
+
+  .service__body { padding: 20px 22px 26px; }
 
   .service h3 {
     font-family: "Unbounded", sans-serif;
@@ -612,8 +643,7 @@
   .service--cta {
     background: var(--orange);
     border-color: var(--orange);
-    display: flex;
-    flex-direction: column;
+    padding: 28px 26px;
     justify-content: center;
     align-items: flex-start;
     gap: 14px;
@@ -811,16 +841,67 @@
 
   .price {
     background: #fff;
-    border-radius: 24px;
-    padding: 26px;
+    border-radius: 26px;
+    overflow: hidden;
     border: 1.5px solid rgba(144, 95, 46, .1);
     box-shadow: 0 6px 18px rgba(74, 50, 32, .06);
     display: flex;
     flex-direction: column;
-    gap: 8px;
     transition: transform .2s, box-shadow .2s;
   }
   .price:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(74, 50, 32, .12); }
+
+  /* зона под иллюстрацию: сейчас цветная подложка с эмодзи,
+     сюда встанет <img class="price__img"> когда появятся картинки */
+  .price__media {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .price__media::before {
+    content: "";
+    position: absolute;
+    width: 44%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .55);
+  }
+
+  .price__emoji {
+    position: relative;
+    font-size: clamp(46px, 4vw, 56px);
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 6px 10px rgba(74, 50, 32, .18));
+  }
+
+  .price:nth-child(even) .price__emoji { transform: rotate(6deg); }
+
+  .price__media img,
+  .price__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .price:nth-child(6n+1) .price__media { background: color-mix(in srgb, var(--teal) 18%, white); }
+  .price:nth-child(6n+2) .price__media { background: color-mix(in srgb, var(--red) 16%, white); }
+  .price:nth-child(6n+3) .price__media { background: color-mix(in srgb, var(--yellow) 26%, white); }
+  .price:nth-child(6n+4) .price__media { background: color-mix(in srgb, var(--green) 18%, white); }
+  .price:nth-child(6n+5) .price__media { background: color-mix(in srgb, var(--orange) 20%, white); }
+
+  .price__body {
+    padding: 20px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
 
   .price h3 { font-family: "Unbounded", sans-serif; font-weight: 700; font-size: 16px; }
 
@@ -829,21 +910,25 @@
   .price__value {
     font-family: "Unbounded", sans-serif;
     font-weight: 800;
-    font-size: 24px;
-    color: var(--orange);
+    font-size: 21px;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--yellow) 45%, white);
+    align-self: flex-start;
+    padding: 9px 20px;
+    border-radius: 999px;
     margin-top: auto;
-    padding-top: 10px;
+    transform: rotate(-2deg);
   }
 
   .price--featured {
     background: var(--brown);
     border-color: var(--brown);
     position: relative;
-    overflow: hidden;
   }
-  .price--featured h3, .price--featured .price__value { color: var(--cream); }
+  .price--featured h3 { color: var(--cream); }
   .price--featured .price__note { color: rgba(255, 247, 236, .75); }
-  .price--featured .price__value { color: var(--yellow); }
+  .price--featured .price__media { background: color-mix(in srgb, var(--yellow) 28%, var(--brown)); }
+  .price--featured .price__value { background: var(--yellow); color: var(--ink); }
 
   .price__tag {
     position: absolute;
@@ -855,6 +940,7 @@
     font-size: 12px;
     padding: 6px 40px;
     transform: rotate(35deg);
+    z-index: 2;
   }
 
   .prices__hint {
@@ -862,6 +948,35 @@
     font-weight: 600;
     font-size: 14.5px;
     color: var(--brown-2);
+  }
+
+  /* подсказка «листайте» — видна только на мобильных каруселях */
+  .swipe-hint { display: none; }
+
+  @media (max-width: 900px) {
+    .swipe-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--brown);
+      opacity: .65;
+    }
+    .swipe-hint::after {
+      content: "→";
+      font-size: 15px;
+      animation: hint-slide 1.4s ease-in-out infinite;
+    }
+  }
+
+  @keyframes hint-slide {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .swipe-hint::after { animation: none; }
   }
 
   /* ============ ОТЗЫВЫ ============ */
@@ -1033,12 +1148,14 @@
     .about__grid { grid-template-columns: 1fr; gap: 36px; }
     .steps { grid-template-columns: 1fr; gap: 36px; }
     .contacts__card { grid-template-columns: 1fr; }
-    .prices__list, .reviews__grid { grid-template-columns: 1fr; }
+    .reviews__grid { grid-template-columns: 1fr; }
     .review:nth-child(2) { transform: rotate(.8deg); }
     .facts--row { flex-direction: column; }
 
-    /* специалисты — горизонтальная карусель со свайпом */
-    .team__grid {
+    /* специалисты, услуги и цены — горизонтальные карусели со свайпом */
+    .team__grid,
+    .services__grid,
+    .prices__list {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
@@ -1048,13 +1165,22 @@
       padding: 6px 24px 20px;
       scrollbar-width: none;
     }
-    .team__grid::-webkit-scrollbar { display: none; }
+    .team__grid::-webkit-scrollbar,
+    .services__grid::-webkit-scrollbar,
+    .prices__list::-webkit-scrollbar { display: none; }
     .person {
       flex: 0 0 min(78vw, 340px);
       scroll-snap-align: center;
       transform: none;
     }
     .person:hover { transform: none; }
+    .service, .price {
+      flex: 0 0 min(74vw, 300px);
+      scroll-snap-align: center;
+    }
+    .service:hover, .price:hover { transform: none; }
+    .services__grid, .prices__list { margin-top: 32px; }
+    .prices__hint { margin-top: 10px; }
   }
 
   @media (max-width: 480px) {
