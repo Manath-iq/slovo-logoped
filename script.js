@@ -34,7 +34,36 @@
     }
   })();
 
-  // Мобильное меню
+  // Появление блоков при скролле
+(function () {
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var ticking = false;
+
+  function check() {
+    ticking = false;
+    var limit = window.innerHeight - 40;
+    els = els.filter(function (el) {
+      if (el.getBoundingClientRect().top < limit) {
+        el.classList.add('is-visible');
+        return false;
+      }
+      return true;
+    });
+  }
+
+  function onScroll() {
+    if (!ticking && els.length) {
+      ticking = true;
+      requestAnimationFrame(check);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  check();
+})();
+
+// Мобильное меню
   (function () {
     var burger = document.getElementById('burger');
     var nav = document.getElementById('nav');

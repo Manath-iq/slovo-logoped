@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<script src="script.js" defer></script>
+<link rel="stylesheet" href="styles.css?v=2">
+<script src="script.js?v=2" defer></script>
 </head>
 <body>
 
@@ -30,7 +30,9 @@
     <nav class="nav" id="nav" aria-label="Основная навигация">
       <a href="#about">О центре</a>
       <a href="#services">Услуги</a>
-      <a href="#format">Как проходят занятия</a>
+      <a href="#team">Специалисты</a>
+      <a href="#prices">Цены</a>
+      <a href="#reviews">Отзывы</a>
       <a href="#contacts">Контакты</a>
     </nav>
 
@@ -152,16 +154,22 @@
           Каждому ребёнку — <strong>своя программа и&nbsp;свой темп</strong>.
         </p>
       </div>
-      <div class="facts">
-        <div class="fact">
+      <div class="about__photo-wrap reveal reveal--d1">
+        <img class="about__photo" src="assets/interior.webp" alt="Кабинет логопедического центра «Слово»" width="1536" height="1024">
+        <div class="about__photo-sticker">Наш кабинет в ЖК Urman 🏠</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="facts facts--row">
+        <div class="fact reveal reveal--d1">
           <div class="fact__num">30 мин</div>
           <div class="fact__text">длится одно занятие — оптимально для детского внимания</div>
         </div>
-        <div class="fact">
+        <div class="fact reveal reveal--d2">
           <div class="fact__num">с 1 года</div>
           <div class="fact__text">принимаем малышей на занятия по раннему развитию</div>
         </div>
-        <div class="fact">
+        <div class="fact reveal reveal--d3">
           <div class="fact__num">8:00–20:00</div>
           <div class="fact__text">работаем ежедневно — удобно подобрать время</div>
         </div>
@@ -253,8 +261,138 @@
     </div>
   </section>
 
+  <!-- ============ СПЕЦИАЛИСТЫ ============ -->
+  <section class="section section--alt" id="team">
+    <div class="container">
+      <span class="section__label reveal" style="background: color-mix(in srgb, var(--yellow) 30%, white); color: var(--brown);">Специалисты</span>
+      <h2 class="section__title reveal">Кто занимается с&nbsp;детьми</h2>
+      <p class="section__intro reveal">
+        Все специалисты центра — с&nbsp;профильным образованием и&nbsp;опытом работы
+        с&nbsp;детьми. Перед началом занятий вы&nbsp;познакомитесь лично.
+      </p>
+
+      <div class="team__grid">
+        <article class="person reveal reveal--d1">
+          <img class="person__photo" src="assets/team-1.webp" alt="Логопед-дефектолог Эльвира Насырова" width="800" height="800">
+          <h3 class="person__name">Эльвира Насырова</h3>
+          <span class="person__role">Логопед-дефектолог</span>
+          <p class="person__bio">Запускает речь у&nbsp;малышей и&nbsp;ставит звуки.
+          Стаж 9&nbsp;лет, высшая квалификационная категория.</p>
+        </article>
+        <article class="person reveal reveal--d2">
+          <img class="person__photo" src="assets/team-2.webp" alt="Нейропсихолог Алия Гимадиева" width="800" height="800">
+          <h3 class="person__name">Алия Гимадиева</h3>
+          <span class="person__role">Нейропсихолог</span>
+          <p class="person__bio">Диагностика и&nbsp;коррекция внимания, памяти
+          и&nbsp;самоконтроля. Помогает детям с&nbsp;трудностями обучения. Стаж 7&nbsp;лет.</p>
+        </article>
+        <article class="person reveal reveal--d3">
+          <img class="person__photo" src="assets/team-3.webp" alt="Логопед Анна Соловьёва" width="800" height="800">
+          <h3 class="person__name">Анна Соловьёва</h3>
+          <span class="person__role">Логопед</span>
+          <p class="person__bio">Коррекция звукопроизношения и&nbsp;заикания,
+          подготовка к&nbsp;школе. Стаж 5&nbsp;лет.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ЦЕНЫ ============ -->
+  <section class="section" id="prices">
+    <div class="container">
+      <span class="section__label reveal" style="background: color-mix(in srgb, var(--orange) 18%, white); color: var(--orange);">Цены</span>
+      <h2 class="section__title reveal">Сколько стоят занятия</h2>
+
+      <div class="prices__list">
+        <div class="price reveal reveal--d1">
+          <h3>Диагностика</h3>
+          <p class="price__note">Первичная консультация и&nbsp;план занятий · 30&nbsp;минут</p>
+          <div class="price__value">800 ₽</div>
+        </div>
+        <div class="price reveal reveal--d2">
+          <h3>Логопедическое занятие</h3>
+          <p class="price__note">Индивидуально · 30&nbsp;минут</p>
+          <div class="price__value">700 ₽</div>
+        </div>
+        <div class="price reveal reveal--d3">
+          <h3>Занятие с дефектологом</h3>
+          <p class="price__note">Индивидуально · 30&nbsp;минут</p>
+          <div class="price__value">800 ₽</div>
+        </div>
+        <div class="price reveal reveal--d1">
+          <h3>Нейропсихолог</h3>
+          <p class="price__note">Диагностика или коррекционное занятие</p>
+          <div class="price__value">900 ₽</div>
+        </div>
+        <div class="price reveal reveal--d2">
+          <h3>Подготовка к школе</h3>
+          <p class="price__note">Мини-группа до&nbsp;4&nbsp;детей · 30&nbsp;минут</p>
+          <div class="price__value">600 ₽</div>
+        </div>
+        <div class="price price--featured reveal reveal--d3">
+          <div class="price__tag">Выгодно</div>
+          <h3>Абонемент на 8 занятий</h3>
+          <p class="price__note">Любой специалист · экономия 400&nbsp;₽</p>
+          <div class="price__value">5 200 ₽</div>
+        </div>
+      </div>
+
+      <p class="prices__hint reveal">Точную программу и&nbsp;количество занятий подскажет специалист после диагностики.</p>
+    </div>
+  </section>
+
+  <!-- ============ ОТЗЫВЫ ============ -->
+  <section class="section section--alt" id="reviews">
+    <div class="container">
+      <span class="section__label reveal" style="background: color-mix(in srgb, var(--green) 16%, white); color: var(--green);">Отзывы</span>
+      <h2 class="section__title reveal">Что говорят родители</h2>
+
+      <div class="reviews__grid">
+        <article class="review reveal reveal--d1">
+          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+          <p class="review__text">Сыну 3,5&nbsp;года, говорил буквально пару слов.
+          Начали заниматься с&nbsp;Эльвирой — через четыре месяца болтает без остановки,
+          дома праздник. Занятия в&nbsp;игровой форме, ребёнок бежит на&nbsp;них с&nbsp;радостью.</p>
+          <div class="review__author">
+            <div class="review__avatar" aria-hidden="true">Г</div>
+            <div>
+              <div class="review__name">Гузель</div>
+              <div class="review__meta">мама Амира, 3,5 года</div>
+            </div>
+          </div>
+        </article>
+        <article class="review reveal reveal--d2">
+          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+          <p class="review__text">Готовили дочку к&nbsp;школе и&nbsp;параллельно ставили
+          звук&nbsp;«Р». Звук поставили за&nbsp;два месяца, читает по&nbsp;слогам,
+          на&nbsp;собеседовании в&nbsp;школе похвалили. Спасибо центру!</p>
+          <div class="review__author">
+            <div class="review__avatar" aria-hidden="true">М</div>
+            <div>
+              <div class="review__name">Мария</div>
+              <div class="review__meta">мама Полины, 6 лет</div>
+            </div>
+          </div>
+        </article>
+        <article class="review reveal reveal--d3">
+          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+          <p class="review__text">Ходим к&nbsp;нейропсихологу третий месяц. Сын стал
+          заметно усидчивее, в&nbsp;садике отметили, что лучше слушает и&nbsp;выполняет
+          задания. Очень тёплое отношение к&nbsp;детям.</p>
+          <div class="review__author">
+            <div class="review__avatar" aria-hidden="true">А</div>
+            <div>
+              <div class="review__name">Айгуль</div>
+              <div class="review__meta">мама Тимура, 5 лет</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ КОНТАКТЫ ============ -->
-  <section class="section section--alt" id="contacts">
+  <section class="section" id="contacts">
     <div class="container">
       <span class="section__label" style="background: color-mix(in srgb, var(--red) 14%, white); color: var(--red);">Контакты</span>
       <h2 class="section__title">Приходите знакомиться</h2>
@@ -311,7 +449,9 @@
     <nav class="footer__nav" aria-label="Навигация в подвале">
       <a href="#about">О центре</a>
       <a href="#services">Услуги</a>
-      <a href="#format">Как проходят занятия</a>
+      <a href="#team">Специалисты</a>
+      <a href="#prices">Цены</a>
+      <a href="#reviews">Отзывы</a>
       <a href="#contacts">Контакты</a>
     </nav>
     <p class="footer__copy">© 2026 Логопедический центр «Слово», Нижнекамск · ул. Солнечная, 22, ЖК Urman · +7 (987) 188-48-58<br>
