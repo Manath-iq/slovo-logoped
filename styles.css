@@ -15,6 +15,8 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  img { max-width: 100%; height: auto; }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -1031,10 +1033,28 @@
     .about__grid { grid-template-columns: 1fr; gap: 36px; }
     .steps { grid-template-columns: 1fr; gap: 36px; }
     .contacts__card { grid-template-columns: 1fr; }
-    .team__grid, .prices__list, .reviews__grid { grid-template-columns: 1fr; }
+    .prices__list, .reviews__grid { grid-template-columns: 1fr; }
     .review:nth-child(2) { transform: rotate(.8deg); }
     .facts--row { flex-direction: column; }
-    .person { max-width: 420px; margin-inline: auto; width: 100%; }
+
+    /* специалисты — горизонтальная карусель со свайпом */
+    .team__grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 16px;
+      margin-inline: -24px;
+      padding: 6px 24px 20px;
+      scrollbar-width: none;
+    }
+    .team__grid::-webkit-scrollbar { display: none; }
+    .person {
+      flex: 0 0 min(78vw, 340px);
+      scroll-snap-align: center;
+      transform: none;
+    }
+    .person:hover { transform: none; }
   }
 
   @media (max-width: 480px) {
