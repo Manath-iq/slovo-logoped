@@ -193,14 +193,14 @@
     bottom: 60px; left: -160px;
   }
 
-  .hero__grid {
+  .hero__inner {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1.05fr .95fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 32px;
-    padding-bottom: clamp(28px, 5vh, 56px);
+    text-align: center;
+    padding-bottom: clamp(36px, 6vh, 64px);
   }
 
   .hero__badge {
@@ -231,13 +231,113 @@
     50% { opacity: .5; transform: scale(.8); }
   }
 
-  .hero h1 {
+  .hero__title {
     font-family: "Unbounded", sans-serif;
     font-weight: 800;
-    font-size: clamp(30px, 4.2vw, 54px);
-    line-height: 1.18;
+    font-size: clamp(30px, 6.2vw, 62px);
+    line-height: 1.16;
     letter-spacing: -0.01em;
-    margin-bottom: 22px;
+    margin-bottom: clamp(18px, 2.5vh, 26px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .18em;
+    max-width: 100%;
+  }
+
+  /* строка заголовка: слова + инлайн-вставки */
+  .hero__line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .14em .28em;
+  }
+
+  /* инлайн-вставки между словами */
+  .hword {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  /* лев в кружке */
+  .hword--lion {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid var(--cream-2);
+    box-shadow: 0 .1em 0 rgba(144, 95, 46, .22);
+    transform: rotate(6deg);
+    overflow: hidden;
+    animation: hword-pop .6s cubic-bezier(.34,1.56,.64,1) .15s backwards;
+  }
+
+  .hword--lion .lion {
+    width: 88%;
+    height: 88%;
+    display: block;
+  }
+
+  /* звезда-вспышка «с 1 года» — наклейка на углу слова из кубиков */
+  .hero__line--blocks { position: relative; }
+
+  .hword--star {
+    position: absolute;
+    top: -.75em;
+    right: -1.1em;
+    width: 1.7em;
+    height: 1.7em;
+    background: var(--yellow);
+    clip-path: polygon(50.0% 0.0%, 60.4% 11.4%, 75.0% 6.7%, 78.3% 21.7%, 93.3% 25.0%, 88.6% 39.6%, 100.0% 50.0%, 88.6% 60.4%, 93.3% 75.0%, 78.3% 78.3%, 75.0% 93.3%, 60.4% 88.6%, 50.0% 100.0%, 39.6% 88.6%, 25.0% 93.3%, 21.7% 78.3%, 6.7% 75.0%, 11.4% 60.4%, 0.0% 50.0%, 11.4% 39.6%, 6.7% 25.0%, 21.7% 21.7%, 25.0% 6.7%, 39.6% 11.4%);
+    transform: rotate(-8deg);
+    margin-inline: .06em;
+    animation: star-spin 14s linear infinite;
+  }
+
+  .hword--star i {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: .26em;
+    line-height: 1.1;
+    color: var(--ink);
+    text-align: center;
+    animation: star-spin-back 14s linear infinite;
+  }
+
+  @keyframes star-spin { to { transform: rotate(352deg); } }
+  @keyframes star-spin-back { from { transform: rotate(8deg); } to { transform: rotate(-352deg); } }
+
+  /* плашка со стрелкой */
+  .hword--arrow {
+    min-width: 1.9em;
+    height: .95em;
+    padding: 0 .3em;
+    border-radius: 999px;
+    background: var(--green);
+    color: #fff;
+    font-size: .9em;
+    font-weight: 700;
+    box-shadow: 0 .09em 0 rgba(74, 50, 32, .22);
+    transform: rotate(-3deg);
+    animation: hword-pop .6s cubic-bezier(.34,1.56,.64,1) .35s backwards;
+  }
+
+  @keyframes hword-pop {
+    from { opacity: 0; scale: .3; }
+  }
+
+  /* волнистое подчёркивание */
+  .hero__wavy {
+    font-style: normal;
+    color: var(--orange);
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--teal);
+    text-decoration-thickness: .05em;
+    text-underline-offset: .16em;
   }
 
   /* слово из кубиков — как в логотипе */
@@ -284,52 +384,18 @@
     font-weight: 600;
     line-height: 1.65;
     color: var(--brown-2);
-    max-width: 520px;
-    margin-bottom: 26px;
+    max-width: 560px;
+    margin-bottom: 28px;
   }
 
   .hero__cta {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 14px;
-    margin-bottom: 28px;
   }
-
-  .hero__chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    max-width: 540px;
-  }
-
-  .chip {
-    font-weight: 800;
-    font-size: 14px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    background: #fff;
-    box-shadow: 0 3px 10px rgba(74, 50, 32, .08);
-    border: 1.5px solid transparent;
-  }
-  .chip:nth-child(1) { color: var(--red);    border-color: color-mix(in srgb, var(--red) 35%, transparent);    transform: rotate(-2deg); }
-  .chip:nth-child(2) { color: var(--teal);   border-color: color-mix(in srgb, var(--teal) 40%, transparent);   transform: rotate(1.5deg); }
-  .chip:nth-child(3) { color: var(--green);  border-color: color-mix(in srgb, var(--green) 40%, transparent);  transform: rotate(-1deg); }
-  .chip:nth-child(4) { color: var(--orange); border-color: color-mix(in srgb, var(--orange) 40%, transparent); transform: rotate(2deg); }
 
   /* ============ ЛЕВ ============ */
-  .hero__visual {
-    position: relative;
-    display: grid;
-    place-items: center;
-    min-height: 420px;
-  }
-
-  .lion {
-    width: min(480px, 100%);
-    height: auto;
-    filter: drop-shadow(0 24px 40px rgba(144, 95, 46, .25));
-  }
-
   .lion__mane {
     transform-origin: 0 0;
     animation: mane-spin 120s linear infinite;
@@ -349,10 +415,16 @@
     50% { transform: scale(1.025); }
   }
 
-  /* стикеры вокруг льва */
+  /* стикеры по краям херо-секции */
+  .hero__deco {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   .sticker {
     position: absolute;
-    z-index: 2;
     animation: float 4s ease-in-out infinite;
   }
 
@@ -362,15 +434,15 @@
   }
 
   .sticker--bubble {
-    top: 4%;
-    right: 8%;
+    top: 14%;
+    right: clamp(8px, 9vw, 180px);
     background: #fff;
     border: 2.5px solid var(--ink);
     border-radius: 22px 22px 22px 4px;
-    padding: 12px 20px;
+    padding: 10px 18px;
     font-family: "Unbounded", sans-serif;
     font-weight: 800;
-    font-size: clamp(16px, 1.6vw, 22px);
+    font-size: clamp(13px, 1.5vw, 20px);
     color: var(--red);
     transform: rotate(6deg);
     box-shadow: 0 6px 0 rgba(74, 50, 32, .18);
@@ -388,32 +460,38 @@
   }
 
   .sticker--l1 {
-    width: 58px; height: 58px; font-size: 26px;
+    width: clamp(40px, 4.5vw, 58px);
+    height: clamp(40px, 4.5vw, 58px);
+    font-size: clamp(18px, 2vw, 26px);
     background: var(--teal);
-    bottom: 18%; left: 2%;
+    top: 22%; left: clamp(6px, 8vw, 160px);
     transform: rotate(-10deg);
     animation-delay: 1.1s;
   }
 
   .sticker--l2 {
-    width: 48px; height: 48px; font-size: 21px;
+    width: clamp(34px, 3.8vw, 48px);
+    height: clamp(34px, 3.8vw, 48px);
+    font-size: clamp(15px, 1.7vw, 21px);
     background: var(--green);
-    top: 14%; left: 8%;
+    bottom: 24%; right: clamp(4px, 6vw, 120px);
     transform: rotate(12deg);
     animation-delay: 1.8s;
   }
 
   .sticker--l3 {
-    width: 42px; height: 42px; font-size: 18px;
+    width: clamp(30px, 3.4vw, 42px);
+    height: clamp(30px, 3.4vw, 42px);
+    font-size: clamp(13px, 1.5vw, 18px);
     background: var(--yellow);
-    bottom: 6%; right: 14%;
+    bottom: 14%; left: clamp(10px, 10vw, 200px);
     transform: rotate(-7deg);
     animation-delay: .8s;
   }
 
-  .doodle { position: absolute; z-index: 0; }
-  .doodle--star1 { top: 42%; right: 0; }
-  .doodle--star2 { bottom: 30%; left: 12%; }
+  .doodle { position: absolute; }
+  .doodle--star1 { top: 48%; right: clamp(6px, 4vw, 80px); }
+  .doodle--star2 { top: 10%; left: clamp(12px, 12vw, 240px); }
 
   /* ============ БЕГУЩАЯ СТРОКА ============ */
   .ticker {
@@ -459,7 +537,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .lion__mane, .lion__face-group, .sticker, .ticker__track, .blocks span, .hero__badge .dot { animation: none; }
+    .lion__mane, .lion__face-group, .sticker, .ticker__track, .blocks span, .hero__badge .dot,
+    .hword--lion, .hword--arrow, .hword--star, .hword--star i { animation: none; }
   }
 
   /* ============ ОБЩЕЕ ДЛЯ СЕКЦИЙ ============ */
@@ -1254,16 +1333,13 @@
   }
 
   @media (max-width: 900px) {
-    .hero__grid {
-      grid-template-columns: 1fr;
-      gap: 48px;
-      text-align: center;
-    }
-    .hero__lead { margin-inline: auto; }
-    .hero__cta, .hero__chips { justify-content: center; }
-    .hero__chips { margin-inline: auto; }
-    .hero__visual { min-height: 0; }
-    .lion { width: min(380px, 86%); }
+    /* на мобильных стикеры прижимаются к краям и не мешают тексту */
+    .sticker--bubble { top: 5%; left: 3%; right: auto; }
+    .sticker--l1 { top: 34%; left: 2%; }
+    .sticker--l2 { bottom: 27%; right: -10px; }
+    .sticker--l3 { bottom: 4%; left: 5%; }
+    .doodle--star1 { top: 56%; right: 3%; }
+    .doodle--star2 { top: 8%; left: 8%; }
   }
 
   @media (max-width: 900px) {
@@ -1305,10 +1381,10 @@
   }
 
   @media (max-width: 480px) {
-    .hero h1 { font-size: 27px; }
+    .hero__title { font-size: clamp(27px, 8.6vw, 34px); }
     .hero__badge { font-size: 12px; padding: 7px 14px; white-space: nowrap; }
     .btn--primary, .btn--ghost { width: 100%; }
-    .sticker--bubble { right: 0; }
+    .sticker--l3, .doodle--star2, .sticker--bubble { display: none; }
     .contacts__buttons .btn, .contacts__buttons .pill-link { width: 100%; justify-content: center; }
     .footer__inner { flex-direction: column; align-items: flex-start; }
   }
