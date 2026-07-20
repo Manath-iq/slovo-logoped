@@ -24,6 +24,8 @@
     background: var(--cream);
     color: var(--ink);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .container {
@@ -127,15 +129,13 @@
     background: var(--orange);
     color: #fff;
     padding: 14px 28px;
-    box-shadow: 0 6px 0 rgba(144, 95, 46, .35);
   }
-  .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 0 rgba(144, 95, 46, .35); }
-  .btn--primary:active { transform: translateY(2px); box-shadow: 0 3px 0 rgba(144, 95, 46, .35); }
+  .btn--primary:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--orange) 88%, var(--ink)); }
+  .btn--primary:active { transform: translateY(0); background: color-mix(in srgb, var(--orange) 80%, var(--ink)); }
 
   .btn--header {
     padding: 10px 22px;
     font-size: 15px;
-    box-shadow: 0 4px 0 rgba(144, 95, 46, .3);
   }
 
   .btn--ghost {
@@ -734,9 +734,8 @@
     color: var(--orange);
     padding: 12px 24px;
     font-size: 15px;
-    box-shadow: 0 4px 0 rgba(74, 50, 32, .2);
   }
-  .service--cta .btn:hover { transform: translateY(-2px); }
+  .service--cta .btn:hover { transform: translateY(-2px); background: var(--cream); }
 
   /* ============ КАК ПРОХОДЯТ ЗАНЯТИЯ (скролл-видео) ============ */
   .format { scroll-margin-top: 0; }
