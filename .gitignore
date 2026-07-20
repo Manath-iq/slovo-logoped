@@ -8,3 +8,7 @@ image-prompts.md
 
 # Исходник видео (на сайт идёт сжатый assets/format-scrub.mp4)
 assets/video.mp4
+
+# Исходники картинок услуг/цен (на сайт идут webp)
+assets/service-*.png
+assets/price-*.png
