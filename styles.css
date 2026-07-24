@@ -1241,6 +1241,56 @@
   .review__name { font-weight: 800; font-size: 15px; }
   .review__meta { font-weight: 600; font-size: 13px; color: var(--brown-2); }
 
+  /* ============ ВОПРОСЫ И ОТВЕТЫ ============ */
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 720px;
+    margin-top: 44px;
+  }
+
+  .faq__item {
+    background: #fff;
+    border-radius: 20px;
+    padding: 0 26px;
+    box-shadow: 0 6px 18px rgba(74, 50, 32, .07);
+    border: 1.5px solid rgba(144, 95, 46, .1);
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+
+  .faq__item summary::after {
+    content: "+";
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--cream-2);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--brown);
+    transition: transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .faq__item[open] summary::after { transform: rotate(45deg); background: var(--orange); color: #fff; }
+
+  .faq__item p { margin: 0 0 22px; font-size: 15px; font-weight: 600; line-height: 1.7; color: var(--brown-2); }
+
   /* ============ ФОТО В «О ЦЕНТРЕ» ============ */
   .about__photo-wrap { position: relative; }
 
